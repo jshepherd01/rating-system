@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Stars</title>
+        <style>
+            .star {
+                display: inline-block;
+                height: 2em;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Demo of the objectively rating system ever made</h2>
+        <div class="star-row" id="demo-star-row">
+            <img class="star" data-index=0 src="unfilled.png" onclick="starClickHandle(event);">
+            <img class="star" data-index=1 src="unfilled.png" onclick="starClickHandle(event);">
+            <img class="star" data-index=2 src="unfilled.png" onclick="starClickHandle(event);">
+            <img class="star" data-index=3 src="unfilled.png" onclick="starClickHandle(event);">
+            <img class="star" data-index=4 src="unfilled.png" onclick="starClickHandle(event);">
+            <span id="demo-star-row-number">0/5</span>
+        </div>
+        <p>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
+        <script>
+            let value = [0,0,0,0,0];
+
+            const starClickHandle = (e)=>{
+                console.log('aaa');
+                if (e.currentTarget.classList.contains('active')) {
+                    e.currentTarget.classList.remove('active');
+                    e.currentTarget.src = "unfilled.png";
+                    value[e.currentTarget.getAttribute('data-index')] = 0;
+                } else {
+                    e.currentTarget.classList.add('active');
+                    e.currentTarget.src = "filled.png";
+                    value[e.currentTarget.getAttribute('data-index')] = 1;
+                }
+                let num = value[0]*16 + value[1]*8 + value[2]*4 + value[3]*2 + value[4]*1;
+
+                document.getElementById('demo-star-row-number').innerText = `${num}/5`;
+            }
+        </script>
+    </body>
+</html>
